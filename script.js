@@ -45,6 +45,15 @@ const buildList = (songs, artist) => {
   }
 };
 
+const handleError = (err) => {
+  let bodyNode = document.querySelector("body");
+  bodyNode.innerHTML = `
+    <div class="container mt-4">
+        <div class="alert alert-danger" role="alert">
+            ${err}
+        </div>
+    </div>`;
+};
 const getInfos = (artist) => {
   fetch(
     `https://striveschool-api.herokuapp.com/api/deezer/search?q=${artist}`,
@@ -54,7 +63,9 @@ const getInfos = (artist) => {
     .then((data) => {
       buildList(data.data, artist);
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      handleError(err);
+    });
 };
 
 const uniqueAlbumsNumber = () => {
