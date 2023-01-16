@@ -54,6 +54,7 @@ const handleError = (err) => {
         </div>
     </div>`;
 };
+
 const getInfos = (artist) => {
   fetch(
     `https://striveschool-api.herokuapp.com/api/deezer/search?q=${artist}`,
